@@ -32,10 +32,10 @@ O idioma de transcrição (ex.: portuguese, english, etc.). No final desse docum
 ## Exemplo
 ```bash
 # Rodando o script com idioma padrão (portuguese)
-python stt_test.py ws://10.11.90.11:8000/ /home/user/audios/exemplo.wav
+python test_stt_sofya.py ws://10.11.90.11:8000/ /home/user/audios/exemplo.wav
 
 # Rodando o script especificando o idioma
-python stt_test.py ws://10.11.90.11:8000/ /home/user/audios/exemplo.wav english
+python test_stt_sofya.py ws://10.11.90.11:8000/ /home/user/audios/exemplo.wav english
 ```
 
 ## O que o script faz?

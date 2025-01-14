@@ -15,7 +15,7 @@ O script stt_test.py se conecta a um endpoint WebSocket definido pelo usuário, 
 Para executar o script, utilize:
 
 ```bash
-python stt_test.py <host_ws> <audio_path> [idioma]
+python test_stt_sofya.py <host_ws> <audio_path> [idioma]
 ```
 Onde:
 

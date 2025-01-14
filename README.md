@@ -21,7 +21,7 @@ Onde:
 
 - host_ws (Obrigatório).
 Endereço do serviço WebSocket que realizará a transcrição.
-Exemplo: ws://137.131.154.194:8000/
+Exemplo: ws://10.11.90.11:8000/
 
 - audio_path (Obrigatório).
 Caminho do arquivo de áudio ou identificador necessário para a função load_resource.
@@ -32,10 +32,10 @@ O idioma de transcrição (ex.: portuguese, english, etc.). No final desse docum
 ## Exemplo
 ```bash
 # Rodando o script com idioma padrão (portuguese)
-python stt_test.py ws://137.131.154.194:800/ /home/user/audios/exemplo.wav
+python stt_test.py ws://10.11.90.11:8000/ /home/user/audios/exemplo.wav
 
 # Rodando o script especificando o idioma
-python stt_test.py ws://137.131.154.194:800/ /home/user/audios/exemplo.wav english
+python stt_test.py ws://10.11.90.11:8000/ /home/user/audios/exemplo.wav english
 ```
 
 ## O que o script faz?

@@ -22,6 +22,7 @@ def get_res(websocket):
 
 def print_result(result: dict):
     """print result and execution time"""
+    # if bool(result["is_partial"]) is False:
     print(result["is_partial"], round(result["time"], 2), result["data"]["text"])
 
 
@@ -38,7 +39,7 @@ def test_send_chunks(host_ws:str, audio_path: str, language: str = "portuguese",
     
     # Cria conexao websocket
     websocket = ws.create_connection(url)
-    websocket.settimeout(0.1)
+    websocket.settimeout(5)
 
     # Carrega o recurso de áudio usando a função utilitária
     # Aqui você ajusta se a sua função `ut.load_resource` precisa de um path completo
@@ -52,15 +53,23 @@ def test_send_chunks(host_ws:str, audio_path: str, language: str = "portuguese",
     ]
 
     df_result = pd.DataFrame(columns=["is_partial", "latency", "result"])
-    for chunk in chunks:
-        websocket.send_bytes(chunk)
-        res = get_res(websocket)
-        if res:
-            df_result.loc[len(df_result)] = [
-                res["is_partial"],
-                round(res["time"], 2),
-                res["data"]["text"],
-            ]
+    # for chunk in chunks:
+    #     websocket.send_bytes(chunk)
+    #     res = get_res(websocket)
+    #     if res:
+    #         df_result.loc[len(df_result)] = [
+    #             res["is_partial"],
+    #             round(res["time"], 2),
+    #             res["data"]["text"],
+    #         ]
+    websocket.send_bytes(audio_bytes)
+    res = get_res(websocket)
+    if res:
+        df_result.loc[len(df_result)] = [
+            res["is_partial"],
+            round(res["time"], 2),
+            res["data"]["text"],
+        ]
 
     # Tenta receber respostas finais por algumas tentativas
     attempts = 0
@@ -75,7 +84,7 @@ def test_send_chunks(host_ws:str, audio_path: str, language: str = "portuguese",
             ]
         else:
             attempts += 1
-            time.sleep(1)
+            time.sleep(5000)
 
     pd.set_option("max_colwidth", 800)
     print("Latency Stats:\n", df_result["latency"].describe())

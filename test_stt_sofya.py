@@ -35,11 +35,11 @@ def test_send_chunks(host_ws:str, audio_path: str, language: str = "portuguese",
     :param chunk_size: Tamanho do chunk em bytes (default = 4096).
     """
     # Monta a URL com o idioma apropriado
-    url = f"{host_ws}?transcription_language={language}"
+    url = f"{host_ws}?transcription_language={language}&is_stream=false"
     
     # Cria conexao websocket
     websocket = ws.create_connection(url)
-    websocket.settimeout(5)
+    websocket.settimeout(30)
 
     # Carrega o recurso de áudio usando a função utilitária
     # Aqui você ajusta se a sua função `ut.load_resource` precisa de um path completo
